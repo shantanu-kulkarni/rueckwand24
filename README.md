@@ -99,6 +99,10 @@ The application is currently deployed on [Vercel](https://vercel.com/), where I 
 
 ---
 
-## 📃 License
+## Contact
+
+In case of any issues regarding this repository, please contact shantanukulkarni73@gmail.com 
+
+## License
 
 MIT
