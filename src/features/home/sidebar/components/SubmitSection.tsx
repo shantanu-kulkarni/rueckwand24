@@ -7,7 +7,7 @@ type Props = {
 
 export default function SubmitSection({ onSubmit, submitDisabled }: Props) {
   return (
-    <div className="min-h-[150px] mb-12">
+    <div className=" mb-16">
       <Button
         className="w-full text-lg py-6 rounded-xl"
         onClick={onSubmit}

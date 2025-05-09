@@ -1,24 +1,29 @@
 import { useState, useCallback, useMemo } from "react";
 import { toast } from "sonner";
-import type { Circle } from "@/features/image/ImageCanvas";
+import type { Circle } from "@/features/home/image/ImageCanvas";
 
-const DIAMETER = 24;
+const CIRCLE_DIAMETER = 24;
+const CIRCLE_RADIUS = CIRCLE_DIAMETER / 2;
 
-function isOverlapping(
-  x: number,
-  y: number,
-  circles: Circle[],
-  ignoreId?: string
-) {
-  return circles.some((c) => {
+function isOverlapping(x: number, y: number, circles: Circle[], ignoreId?: string) {
+  return circles.some(c => {
     if (ignoreId && c.id === ignoreId) return false;
     const dx = c.x - x;
     const dy = c.y - y;
-    return Math.sqrt(dx * dx + dy * dy) < DIAMETER;
+    return Math.sqrt(dx * dx + dy * dy) < CIRCLE_DIAMETER;
   });
 }
 
-export default function useCircles() {
+type UseCirclesProps = {
+  showSuccessToast: (data: {
+    circles: Circle[];
+    imageWidth: number;
+    imageHeight: number;
+    selectedMaterial: string | null;
+  }) => void;
+};
+
+export default function useCircles({ showSuccessToast }: UseCirclesProps) {
   const [circles, setCircles] = useState<Circle[]>([]);
   const [selectedMaterial, setSelectedMaterial] = useState<string | null>(null);
   const [imageWidth, setImageWidth] = useState<number | null>(null);
@@ -30,11 +35,18 @@ export default function useCircles() {
       if (!imageWidth || !imageHeight) return;
       const clampedX = Math.max(0, Math.min(x, imageWidth));
       const clampedY = Math.max(0, Math.min(y, imageHeight));
+
       if (isOverlapping(clampedX, clampedY, circles)) {
-        toast.error("Cannot add circle: overlaps with another circle.");
+        toast.error("Cannot add circle: overlaps with another circle.", {
+          id: "overlap-error",
+          duration: 3000,
+          position: "bottom-right",
+          className: "bg-red-500 text-white",
+        });
         return;
       }
-      setCircles((prev) => [
+
+      setCircles(prev => [
         ...prev,
         { id: Date.now().toString(), x: clampedX, y: clampedY },
       ]);
@@ -47,19 +59,26 @@ export default function useCircles() {
       if (!imageWidth || !imageHeight) return;
       const clampedX = Math.max(0, Math.min(x, imageWidth));
       const clampedY = Math.max(0, Math.min(y, imageHeight));
+
       if (isOverlapping(clampedX, clampedY, circles, id)) {
-        toast.error("Cannot move circle: overlaps with another circle.");
+        toast.error("Cannot move circle: overlaps with another circle.", {
+          id: "overlap-error",
+          duration: 3000,
+          position: "bottom-right",
+          className: "bg-red-500 text-white",
+        });
         return;
       }
-      setCircles((prev) =>
-        prev.map((c) => (c.id === id ? { ...c, x: clampedX, y: clampedY } : c))
+
+      setCircles(prev =>
+        prev.map(c => (c.id === id ? { ...c, x: clampedX, y: clampedY } : c))
       );
     },
     [circles, imageWidth, imageHeight]
   );
 
   const removeCircle = useCallback((id: string) => {
-    setCircles((prev) => prev.filter((c) => c.id !== id));
+    setCircles(prev => prev.filter(c => c.id !== id));
   }, []);
 
   const handleImageSizeChange = useCallback((width: number, height: number) => {
@@ -69,21 +88,22 @@ export default function useCircles() {
 
   const handleSubmit = useCallback(() => {
     if (!imageWidth || !imageHeight) return;
-    const output = circles.map((c) => ({
-      x: c.x,
-      y: c.y,
-      xPercent: (c.x / imageWidth) * 100,
-      yPercent: (c.y / imageHeight) * 100,
-    }));
-    toast.success("Configuration submitted successfully.");
-    console.log({ circles: output, selectedMaterial, imageWidth, imageHeight });
+    showSuccessToast({
+      circles,
+      imageWidth,
+      imageHeight,
+      selectedMaterial,
+    });
     setCircles([]);
     setSelectedMaterial(null);
-  }, [circles, selectedMaterial, imageWidth, imageHeight]);
+  }, [circles, imageWidth, imageHeight, selectedMaterial, showSuccessToast]);
 
   const submitDisabled = useMemo(
     () =>
-      circles.length === 0 || !selectedMaterial || !imageWidth || !imageHeight,
+      circles.length === 0 ||
+      !selectedMaterial ||
+      !imageWidth ||
+      !imageHeight,
     [circles, selectedMaterial, imageWidth, imageHeight]
   );
 
@@ -101,5 +121,6 @@ export default function useCircles() {
     handleImageSizeChange,
     handleSubmit,
     submitDisabled,
+    CIRCLE_RADIUS,
   };
 }

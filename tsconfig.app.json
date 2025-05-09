@@ -24,9 +24,9 @@
     "noUncheckedSideEffectImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/components/shadcnlib/*"],
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]

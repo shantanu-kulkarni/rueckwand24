@@ -1,7 +1,7 @@
 import { Input } from "@/components/shadcncomponents/ui/input";
 import { Card } from "@/components/shadcncomponents/ui/card";
 import { Trash2 } from "lucide-react";
-import type { Circle } from "@/features/image/ImageCanvas";
+import type { Circle } from "../../image/ImageCanvas";
 import { clamp } from "@/utility/sidebarClamp";
 import { getRandomColor } from "@/utility/getRandomColor";
 

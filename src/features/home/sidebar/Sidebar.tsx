@@ -46,43 +46,49 @@ export default function Sidebar(props: Props) {
         style={{ minHeight: "700px" }}
       >
         <div className="w-full max-w-lg mx-auto">
-          <SidebarHeader
-            title="Enter Dimensions."
-            description="Set the exact positions for your custom points. You can drag or enter values below."
-          />
+          <div className="mb-32">
+            <SidebarHeader
+              title="Enter Dimensions."
+              description="Set the exact positions for your custom points. You can drag or enter values below."
+            />
+            <CircleList {...props} />
+            <div className="px-4">
+              <NewCircleInput
+                newX={newX}
+                newY={newY}
+                setNewX={setNewX}
+                setNewY={setNewY}
+                addCircle={props.addCircle}
+                imageWidth={props.imageWidth}
+                imageHeight={props.imageHeight}
+                circleRadius={props.circleRadius}
+                isAddDisabled={isAddDisabled}
+              />
+            </div>
+          </div>
 
-          <CircleList {...props} />
-          <div className="px-4">
-            <NewCircleInput
-              newX={newX}
-              newY={newY}
-              setNewX={setNewX}
-              setNewY={setNewY}
-              addCircle={props.addCircle}
-              imageWidth={props.imageWidth}
-              imageHeight={props.imageHeight}
-              circleRadius={props.circleRadius}
-              isAddDisabled={isAddDisabled}
+          <div className="mb-32">
+            <SidebarHeader
+              title="Select Material."
+              description="Choose from our premium materials to match your style and needs."
+            />
+            <MaterialSelector
+              materials={props.materials}
+              selectedMaterial={props.selectedMaterial}
+              setSelectedMaterial={props.setSelectedMaterial}
             />
           </div>
-          <SidebarHeader
-            title="Select Material."
-            description="Choose from our premium materials to match your style and needs."
-          />
-          <MaterialSelector
-            materials={props.materials}
-            selectedMaterial={props.selectedMaterial}
-            setSelectedMaterial={props.setSelectedMaterial}
-          />
 
-          <SidebarHeader
-            title="Submit."
-            description="Review your configuration and submit your design."
-          />
-          <SubmitSection
-            onSubmit={props.onSubmit}
-            submitDisabled={props.submitDisabled}
-          />
+          <div className="">
+            <SidebarHeader
+              title="Submit."
+              description="Review your configuration and submit your design."
+            />
+            <SubmitSection
+              onSubmit={props.onSubmit}
+              submitDisabled={props.submitDisabled}
+            />
+          </div>
         </div>
       </div>
     </div>
