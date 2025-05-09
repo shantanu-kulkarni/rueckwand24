@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import type { Circle } from "../features/image/ImageCanvas";
+import type { Circle } from "@/features/home/image/ImageCanvas";
 
 type Params = {
   circles: Circle[];
