@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import type { Material } from "@/features/sidebar/Sidebar";
+import type { Material } from "../Sidebar";
 
 type Props = {
   materials: Material[];
