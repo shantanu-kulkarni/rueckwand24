@@ -54,7 +54,7 @@ export default function NewCircleInput({
         <button
           onClick={handleAdd}
           disabled={isAddDisabled}
-          className="ml-auto text-neutral-400 hover:text-blue-600 transition-colors flex items-center justify-center w-8 h-8 rounded-full"
+          className="ml-auto text-neutral-400 hover:text-black transition-colors flex items-center justify-center w-8 h-8 rounded-full"
           title="Add circle"
           type="button"
         >
