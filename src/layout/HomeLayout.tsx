@@ -1,14 +1,14 @@
 import { useState, useCallback, useMemo } from "react";
-import ImageCanvas from "../features/image/ImageCanvas";
-import type { Circle } from "../features/image/ImageCanvas";
-import Sidebar from "../features/sidebar/Sidebar";
+import ImageCanvas from "@/features/home/image/ImageCanvas";
+import type { Circle } from "@/features/home/image/ImageCanvas";
+import Sidebar from "@/features/home/sidebar/Sidebar";
 import { toast } from "sonner";
 
 const initialMaterials = [
   {
     name: "ALU - Classic Matt",
     image: "/materials/alu-classic-matt.jpg",
-    badges: ["Robust & Günstig"],
+    badges: ["Robust & Cheap"],
     details: [],
   },
   {
@@ -154,7 +154,7 @@ const HomeLayout = () => {
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-[#fafbfc]">
-      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row">
+      <div className="w-full xl:w-5/6 mx-auto flex flex-col lg:flex-row">
         <div className="w-full lg:w-2/3 flex flex-col items-center justify-center p-4 sm:p-8">
           <div className="mb-8 w-full flex flex-col items-start">
             <h1 className="text-5xl font-bold tracking-tight text-neutral-900 mb-2 text-left">Design your Kitchen Back Wall</h1>
