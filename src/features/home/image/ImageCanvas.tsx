@@ -14,7 +14,7 @@ export type Circle = {
   y: number;
 };
 
-const imageURL = "src/assets/images/image.jpg";
+const imageURL = "/images/image.jpg";
 
 type Props = {
   circles: Circle[];
