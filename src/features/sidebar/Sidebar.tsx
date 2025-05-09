@@ -129,19 +129,19 @@ export default function Sidebar({
                     className="w-8 h-8 flex-shrink-0 rounded-full border border-white mr-4"
                     style={{ backgroundColor: getRandomColor(idx) }}
                   />
-                  <div className="flex-1 flex gap-6 items-center">
-                    <div className="flex items-center w-1/2">
-                      <span className="text-xs text-neutral-500 mr-4">X</span>
+                  <div className="flex-1 flex flex-col sm:flex-row gap-2 sm:gap-6 w-full items-center">
+                    <div className="flex items-center w-full sm:w-1/2">
+                      <div className="text-xs text-neutral-500 mr-4">X</div>
                       <Input
                         id={`x-${circle.id}`}
                         type="number"
                         value={circle.x}
                         onChange={e => handleXChange(circle, e)}
                         onBlur={e => handleXBlur(circle, e)}
-                        className="rounded-lg border border-neutral-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg px-4 py-2 transition-all duration-200"
+                        className="w-full rounded-lg border border-neutral-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg px-4 py-2 transition-all duration-200"
                       />
                     </div>
-                    <div className="flex items-center w-1/2">
+                    <div className="flex items-center w-full sm:w-1/2">
                       <span className="text-xs text-neutral-500 mr-4">Y</span>
                       <Input
                         id={`y-${circle.id}`}
@@ -149,7 +149,7 @@ export default function Sidebar({
                         value={circle.y}
                         onChange={e => handleYChange(circle, e)}
                         onBlur={e => handleYBlur(circle, e)}
-                        className="rounded-lg border border-neutral-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg px-4 py-2 transition-all duration-200"
+                        className="w-full rounded-lg border border-neutral-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg px-4 py-2 transition-all duration-200"
                       />
                     </div>
                     <button
@@ -167,10 +167,10 @@ export default function Sidebar({
                 </Card>
               ))}
 
-              <Card className="flex flex-row items-center gap-2 mb-6 w-full bg-white rounded-xl border border-neutral-200 transition-all duration-300 hover:shadow-md hover:scale-[1.01] px-4 py-3">
+              <Card className="flex flex-row items-center gap-2 mb-6 w-full bg-white rounded-xl shadow-sm px-4 py-3">
                 <div className="w-6 h-6 flex-shrink-0 mr-6 flex items-center justify-center" />
-                <div className="flex-1 flex gap-6 items-center">
-                  <div className="flex items-center w-1/2">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 w-full items-center">
+                  <div className="flex items-center w-full sm:w-1/2">
                     <span className="text-xs text-neutral-500 mr-4">X</span>
                     <Input
                       id="new-x"
@@ -179,11 +179,11 @@ export default function Sidebar({
                       value={newX}
                       onChange={e => setNewX(e.target.value)}
                       onBlur={handleNewXBlur}
-                      className="rounded-lg border border-neutral-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg px-4 py-2 transition-all duration-200"
+                      className="w-full rounded-lg border border-neutral-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg px-4 py-2 transition-all duration-200"
                       disabled={isAddDisabled}
                     />
                   </div>
-                  <div className="flex items-center w-1/2">
+                  <div className="flex items-center w-full sm:w-1/2">
                     <span className="text-xs text-neutral-500 mr-4">Y</span>
                     <Input
                       id="new-y"
@@ -192,7 +192,7 @@ export default function Sidebar({
                       value={newY}
                       onChange={e => setNewY(e.target.value)}
                       onBlur={handleNewYBlur}
-                      className="rounded-lg border border-neutral-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg px-4 py-2 transition-all duration-200"
+                      className="w-full rounded-lg border border-neutral-200 bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg px-4 py-2 transition-all duration-200"
                       disabled={isAddDisabled}
                     />
                   </div>

@@ -153,9 +153,9 @@ const HomeLayout = () => {
   const submitDisabled = useMemo(() => circles.length === 0 || !selectedMaterial || !imageWidth || !imageHeight, [circles, selectedMaterial, imageWidth, imageHeight]);
 
   return (
-    <div className="flex min-h-screen bg-[#fafbfc]">
-      <div className="w-5/6 mx-auto flex">
-        <div className="w-2/3 flex flex-col items-center justify-center p-8">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-[#fafbfc]">
+      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row">
+        <div className="w-full lg:w-2/3 flex flex-col items-center justify-center p-4 sm:p-8">
           <div className="mb-8 w-full flex flex-col items-start">
             <h1 className="text-5xl font-bold tracking-tight text-neutral-900 mb-2 text-left">Design your Kitchen Back Wall</h1>
             <p className="text-xl text-neutral-500 font-light text-left max-w-xl">Create your perfect kitchen back wall with custom dimensions, premium materials, and a seamless Apple-inspired experience.</p>
@@ -171,7 +171,7 @@ const HomeLayout = () => {
             />
           </div>
         </div>
-        <aside className="w-1/3 h-screen overflow-y-auto flex flex-col bg-white border-l border-neutral-200 p-8">
+        <aside className="w-full lg:w-[420px] xl:w-[480px] h-auto lg:h-screen overflow-y-auto flex flex-col bg-white border-l border-neutral-200 p-4 sm:p-8">
           <Sidebar
             circles={circles}
             addCircle={addCircle}
